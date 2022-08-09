@@ -6,6 +6,7 @@ hassudo=0
 for ugroup in ${usergroups[@]}; do
     if [[ "$ugroup" == "sudo" ]]; then
         hassudo=1;
+        break;
     fi
 done
 
@@ -18,6 +19,7 @@ if [ -f "./superuser-x86_64-linux.tgz" ]; then
         for alternative in $(ls "/etc/alternatives/"); do
             if [ "$alternative" != "superuser" ]; then
                 sudo update-alternatives --install /usr/bin/superuser superuser "$HOME/.local/bin/superuser" 1 &> /dev/null
+                break;
             fi
         done
 
