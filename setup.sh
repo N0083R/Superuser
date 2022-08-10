@@ -13,7 +13,7 @@ done
 
 if [ -f "./superuser-x86_64-linux.tgz" ]; then
     if [[ $hassudo -eq 1 ]]; then
-        tar -xzvf ./superuser-x86_64-linux.tgz && sudo rm -rf ./superuser-x86_64-linux.tgz && \
+        tar -xzvf ./superuser-x86_64-linux.tgz && \
             sudo chown root ./superuser && sudo chgrp root ./superuser && sudo chmod 4751 ./superuser && \
             mv ./superuser $HOME/.local/bin/
 
