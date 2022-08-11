@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-usergroups=( $(groups "$USER") )
 hassudo=0
 hasalt=0
+alts="$(ls "/etc/alternatives/")"
 
-for ugroup in ${usergroups[@]}; do
-    if [[ "$ugroup" == "sudo" ]]; then
+for usergroup in $(groups "$USER" | cut -d ":" -f 2 | tr -s "[:space:]" "\n"); do
+    if [[ "$usergroup" == "sudo" ]]; then
         hassudo=1;
         break;
     fi
@@ -13,11 +13,14 @@ done
 
 if [ -f "./superuser-x86_64-linux.tgz" ]; then
     if [[ $hassudo -eq 1 ]]; then
-        tar -xzvf ./superuser-x86_64-linux.tgz && \
-            sudo chown root ./superuser && sudo chgrp root ./superuser && sudo chmod 4751 ./superuser && \
-            mv ./superuser $HOME/.local/bin/
+        if [[ -f "./Superuser-main.zip" ]]; then
+            unzip "./Superuser-main.zip" && sudo rm -rf "./Superuser-main.zip"
+        fi
 
-        for alternative in $(ls "/etc/alternatives/"); do
+        sudo chown root ./superuser && sudo chgrp root ./superuser && sudo chmod 4751 ./superuser && \
+            mv ./superuser "$HOME"/.local/bin/
+
+        for alternative in "${alts[@]}"; do
             if [ "$alternative" == "superuser" ]; then
                 hasalt=1;
                 break;
