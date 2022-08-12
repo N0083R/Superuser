@@ -53,7 +53,7 @@ proc Entries*(directory: string = "./", match: string = "", Yield: int = 0) {.no
         fileinfo: FileInfo = info[index]
         entry: string = entries[index].split("/")[^1]
 
-      size = "{fileinfo.size.float / 1000:.3f} KB".fmt
+      size = "{fileinfo.size.float / 1000:.2f} KB".fmt
 
       str.add([pcFile: '-', 'l', pcDir: 'd', 'l'][fileinfo.kind])
 
