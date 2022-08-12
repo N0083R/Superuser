@@ -27,19 +27,6 @@ if [ -f "./superuser-x86_64-linux.tgz" ]; then
         sudo chown root ./superuser && sudo chgrp root ./superuser && sudo chmod 4751 ./superuser && \
             mv ./superuser "$HOME"/.local/bin/
 
-        if [[ $altsdir -eq 1 ]]; then
-            for alternative in "${alts[@]}"; do
-                if [ "$alternative" == "superuser" ]; then
-                    hasalt=1;
-                    break;
-                fi
-            done
-            
-            if [[ $hasalt -eq 0 ]]; then
-                sudo update-alternatives --install /usr/bin/superuser superuser "$HOME/.local/bin/superuser" 1 &> /dev/null
-            fi
-        fi
-
         for path in $(echo "$PATH" | tr -s ":" "\n"); do
             if [[ "$path" == "$HOME/.local/bin" ]] || [[ "$path" == "$HOME/.local/bin/" ]]; then
                 haspath=1;
@@ -54,6 +41,19 @@ if [ -f "./superuser-x86_64-linux.tgz" ]; then
         elif [[ "$SHELL" == '/usr/bin/zsh' ]] && [[ $haspath -eq 0 ]]; then
             zshrc="$HOME/.zshrc";
             echo -e "\n\nPATH=$PATH:$HOME/.local/bin/" >> "$HOME"/.zshrc && command source "$zshrc"
+        fi
+
+        if [[ $altsdir -eq 1 ]]; then
+            for alternative in "${alts[@]}"; do
+                if [ "$alternative" == "superuser" ]; then
+                    hasalt=1;
+                    break;
+                fi
+            done
+            
+            if [[ $hasalt -eq 0 ]]; then
+                sudo update-alternatives --install /usr/bin/superuser superuser "$HOME/.local/bin/superuser" 1 &> /dev/null
+            fi
         fi
 
         clear && superuser actions
