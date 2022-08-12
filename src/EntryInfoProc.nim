@@ -29,7 +29,7 @@ proc EntryInfo*(entry: string) {.noReturn.} =
     stderr.flushFile
     quit(1)
 
-  size = "{info.size.float / 1000:.1f}KB".fmt
+  size = "{info.size.float / 1000:.2f}KB".fmt
   tmp = expandTilde(entry).split("/")
 
   str.add([pcFile: '-', 'l', pcDir: 'd', 'l'][info.kind])
