@@ -28,7 +28,7 @@ if [ -f "./superuser-x86_64-linux.tgz" ]; then
             mv ./superuser "$HOME"/.local/bin/
 
         for path in $(echo "$PATH" | tr -s ":" "\n"); do
-            if [[ "$path" == "$HOME/.local/bin" ]] || [[ "$path" == "$HOME/.local/bin/" ]]; then
+            if [[ "$path" == "$HOME/.local/bin" ]] && [[ "$path" == "$HOME/.local/bin/" ]]; then
                 haspath=1;
                 break;
             fi
