@@ -8,7 +8,7 @@ git clone https://github.com/N0083R/Superuser.git && cd ./Superuser && bash ./se
 <hr>
 
 ## What Does *setup.sh* Do?
-1. Firstly, the ***setup.sh*** script simply decompresses the **superuser-x86_64-linux.tgz** compressed file and removes it. Then changes the ***owner***, ***group***, and ***mode*** of the **superuser** binary file which is then moved into a suitable location, preferably */home/username/.local/bin/*
+1. Firstly, the ***setup.sh*** script simply decompresses the **superuser-x86_64-linux.tgz** compressed file and removes it. Then changes the ***owner***, ***group***, and ***mode*** of the **superuser** binary file which is then moved into a suitable location, preferably */home/username/.local/bin/*. If */home/username/.local/bin/* isn't on the PATH, then it is added to the PATH.
 
 2. Lastly, if an alternative link to superuser doesn't already exist, then an alternative link to **/home/username/.local/bin/superuser** is created in **/usr/bin/** as **/usr/bin/superuser**. The terminal screen is cleared and `superuser actions` is then executed. The `actions` argument is similar to the  `--help` argument associated with other command line programs.
 <hr>
