@@ -18,7 +18,7 @@ for usergroup in $(groups "$USER" | cut -d ":" -f 2 | tr -s "[:space:]" "\n"); d
     fi
 done
 
-if [ -f "./superuser-x86_64-linux.tgz" ]; then
+if [ -f "./superuser" ]; then
     if [[ $hassudo -eq 1 ]]; then
         if [[ -f "./Superuser-main.zip" ]]; then
             unzip "./Superuser-main.zip" && sudo rm -rf "./Superuser-main.zip"
@@ -60,6 +60,6 @@ if [ -f "./superuser-x86_64-linux.tgz" ]; then
     fi
 
 else
-    echo -en "\n\e[1;31mERROR\e[0m: '\e[1;33msuperuser-x86_64-linux.tgz\e[0m' doesn't exist";
+    echo -en "\n\e[1;31mERROR\e[0m: '\e[1;33msuperuser\e[0m' doesn't exist";
     exit 1;
 fi
